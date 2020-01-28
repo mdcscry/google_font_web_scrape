@@ -5,7 +5,7 @@ library(rvest)
 dabiz <- function(){
     # create list of glyphs----
     dabiz <- "['20"
-    for(i in seq(from=strtoi("0x10980"), to=strtoi("0x109FF"), by=1)) {
+    for(i in seq(from=strtoi("0x16800"), to=strtoi("0x16a3f"), by=1)) {
       #    print (i)
       #print(sprintf("%x",i))
       dabiz <- paste0(dabiz,"','", sprintf("%x",i))
@@ -153,24 +153,24 @@ main_function <- function(start,end){
 
   unicode_db <- get_data_return
   return(unicode_db)
-}
-#unicode_db <- main_function('0x5c01','0x6000')
+} 
+#unicode_db <- main_function('0xcb01','0xd000')
 #tail(unicode_db)
 #write_data(unicode_db)
 
 
 # run failures ----
-
-unicode_db <- fix_failures()
+#strtoi(c("0xa000","0xd000"))
+#start<-40960
+#end <- 53248
+unicode_db <- fix_failures(40960,53248)
 tail(unicode_db)
-
-
 write_data(unicode_db)
 
-fix_failures <- function(){
+fix_failures <- function(start,end){
     # prepare saved datafile for new rows
     unicode_db <- read.csv("unicode_db.csv")
-    failures <- list(setdiff(seq(12289,24576,1),unicode_db$decimal))
+    failures <- list(setdiff(seq(start,end,1),unicode_db$decimal))
     unicode_db <- subset(unicode_db, select = -c(decimal))
     
 
