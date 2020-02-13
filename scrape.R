@@ -1,5 +1,5 @@
 library(rvest)
-
+library(stringr)
 
 
 dabiz <- function(){
@@ -125,13 +125,13 @@ get_data <- function(unicode_db,db_build_url){
 
 ###  writeTable  ----
 
-write_data <- function (unicode_db){
+write_data <- function (unicode_db,file = "unicode_db.csv"){
  # Add Decimal ---- 
   unicode_db['decimal'] <-apply(unicode_db['hex'],1,function(x) strtoi(paste0('0x',x)))
   attach (unicode_db)
   unicode_db <- unicode_db[order(decimal),]
 
-  write.table(unicode_db, file = "unicode_db.csv",
+  write.table(unicode_db, file = file,
           col.names = TRUE, 
           row.names = FALSE,
           sep=","
@@ -143,44 +143,149 @@ print("Table is written.")
 
 #  Call the Main Functions ----
 # prepare saved datafile for new rows
-main_function <- function(start,end){
-  unicode_db <- read.csv("unicode_db.csv")
+main_function <- function(start,end,file){
+  unicode_db <- read.csv(file)
   #unicode_db <- data.frame()
   unicode_db <- subset(unicode_db, select = -c(decimal))
-
 
   get_data_return <-get_data(unicode_db,build_url(start,end))
 
   unicode_db <- get_data_return
   return(unicode_db)
 } 
-#unicode_db <- main_function('0xcb01','0xd000')
-#tail(unicode_db)
-#write_data(unicode_db)
 
-
-# run failures ----
-#strtoi(c("0xa000","0xd000"))
-#start<-40960
-#end <- 53248
-unicode_db <- fix_failures(40960,53248)
-tail(unicode_db)
-write_data(unicode_db)
-
-fix_failures <- function(start,end){
-    # prepare saved datafile for new rows
-    unicode_db <- read.csv("unicode_db.csv")
-    failures <- list(setdiff(seq(start,end,1),unicode_db$decimal))
-    unicode_db <- subset(unicode_db, select = -c(decimal))
-    
-
-    get_data_return_fail <-get_data(unicode_db,build_failure_url(failures))
+fix_failures <- function(start,end,file){
+  # prepare saved datafile for new rows
+  unicode_db <- read.csv(file)
+  failures <- list(setdiff(seq(start,end,1),unicode_db$decimal))
+  unicode_db <- subset(unicode_db, select = -c(decimal))
+  #print(failures)
+  print(length(failures[[1]]))
+  i <- 0
+  while ((length(failures[[1]]) >0)&&(i < 4)){
+    get_data_return_fail <- get_data(unicode_db,build_failure_url(failures))
     tail(get_data_return_fail,15)
     unicode_db <- get_data_return_fail
     tail(unicode_db,15)
-    return(unicode_db)
-    
+    write_data(unicode_db,file)
+    unicode_db <- read.csv(file)
+    failures <- list(setdiff(seq(start,end,1),unicode_db$decimal))
+    unicode_db <- subset(unicode_db, select = -c(decimal))
+    print (failures)
+    i <- i+1
+  }  
+  return(unicode_db)
+  
 }  
-    
-    
+
+
+
+
+
+
+##unicode_db_1d000_1d24f.csv
+    #Musical Symbols
+    #Ancient Greek Musical Notation
+##unicode_db_1d2e0_1daaf.csv 
+    #Mayan Numerals
+    #Tai Xuan Jing Symbols  
+    #Counting Rod Numerals
+    #Mathematical Alphanumeric Symbols
+    #Sutton SignWriting
+##unicode_db_1e000_1e02f.csv #glaglitic supplement
+##unicode_db_1e100_1e14f.csv #Nyiakeng Puachue Hmong
+##unicode_db_1e2c0_1e2ff.csv #wancho
+##unicode_db_1e800_1e8df.csv #Mende Kikakui
+##unicode_db_1e900_1e95f.csv	Adlam
+##unicode_db_1ec70_1ecbf.csv	Indic Siyaq Numbers
+##unicode_db_1ed00_1ed4f.csv	Ottoman Siyaq Numbers
+##unicode_db_1ee00_1eeff.csv	Arabic Mathematical Alphabetic Symbols
+##unicode_db_1f000_1f02f.csv	Mahjong Tiles
+
+
+##unicode_db_1f030_1f09f.csv	Domino Tiles
+##unicode_db_1f0a0_1f0ff.csv	Playing Cards
+##unicode_db_1f100_1f1ff.csv	Enclosed Alphanumeric Supplement
+##unicode_db_1f200_1f2ff.csv	Enclosed Ideographic Supplement
+##unicode_db_1f300_1f5ff.csv	Miscellaneous Symbols and Pictographs
+##unicode_db_1f600_1f64f.csv	Emoticons
+
+##unicode_db_1f650_1f67f.csv	Ornamental Dingbats
+##unicode_db_1f680_1f6ff.csv	Transport and Map Symbols
+##unicode_db_1f700_1f77f.csv	Alchemical Symbols
+##unicode_db_1f780_1f7ff.csv	Geometric Shapes Extended
+##unicode_db_1f800_1f8ff.csv	Supplemental Arrows-C
+##unicode_db_1f900_1f9ff.csv	Supplemental Symbols and Pictographs
+##unicode_db_1fa00_1fa6f.csv	Chess Symbols
+##unicode_db_1fa70_1faff.csv	Symbols and Pictographs Extended-A
+
+#list_of_blocks <- c(#'1bc00_1bc9f','1d000_1d24f',
+                    #'1d2e0_1d2ff',
+                    #'1d300_1d37f',
+                    #'1d400_1d7ff',
+                    #'1d800_1daaf',
+  #                  '1e000_1e02f','1e100_1e14f','1e2c0_1e2ff','1e800_1e8df'
+ #                   )
+#block <- c('1d800_1daaf')
+
+#list_of_blocks <- c('1e900_1e95f','1ec70_1ecbf','1ed00_1ed4f','1ee00_1eeff','1f000_1f02f')
+#list_of_blocks <- c(#'1f030_1f09f','1f0a0_1f0ff','1f100_1f1ff',
+                   # '1f200_1f2ff','1f300_1f64f')
+
+#list_of_blocks <- c('1f650_1f67f','1f680_1f6ff','1f700_1f77f',
+#                    '1f780_1f7ff',
+#                    '1f800_1f8ff',
+#                    '1f900_1f9ff',
+#                    '1fa00_1fa6f',
+#                    '1fa70_1faff')
+
+list_of_blocks <- c('6001_6300','6301_6500','6501_6700')
+list_of_blocks <- c('6801_6a00','6a01_6c00','6c01_6fff')
+list_of_blocks <- c('7000_7300','7301_7600','7601_7700')
+list_of_blocks <- c('7701_7a00','7a01_7c00','7c01_7fff')
+list_of_blocks <- c('8000_8300',
+                    '8301_8400','8401_8500','8501_8600',
+                    '8601_8800',
+                    '8301_8400')
+list_of_blocks <- c('8801_8a00','8a01_8c00',
+                    '8c01_8d00','8d01_8e00','8e01_8f00','8f01_8fff'
+                    )
+list_of_blocks <- c('9000_9200','9201_9300',
+                    '9301_9400','9401_9500')
+list_of_blocks <- c('9501_9700','9701_9800',
+                    '9801_9900','9901_9a00')
+list_of_blocks <- c('9a01_9c00','9c01_9d00','9d01_9e00','9e01_9f00')
+ list_of_blocks <- c('9f01_a000')
+
+#block <- '8301_8400'
+#9FFF
+
+for (block in list_of_blocks){
+
+  current_main <-paste0('unicode_db_',block,'.csv')
+  file.create(current_main)
+  system(paste0("head -n1 unicode_db-3000.csv > " ,current_main))
+
+  main_start <- paste0('0x',str_split(block,'_')[[1]][1])  
+  main_end <- paste0('0x',str_split(block,'_')[[1]][2])
+  unicode_db <- main_function(main_start,main_end,current_main)
+  
+  tail(unicode_db) 
+  write_data(unicode_db,current_main)
+
+
+
+  # run failures ----
+  start <- strtoi(main_start)
+  end <- strtoi(main_end)
+  currentfixer <- current_main
+  unicode_db <- fix_failures(start,end,currentfixer)
+  tail(unicode_db)
+  write_data(unicode_db,currentfixer)
+
+}    
+
+
+
+
     
