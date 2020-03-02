@@ -37,25 +37,37 @@ unique(unicode_js_array_generator_all$gen_cat)
 
 #  Get Letters -----
 
-letters_filter <-c("Other_Letter",
+letters_filter<-c("Other_Letter",
                   "Uppercase_Letter",
                   "Lowercase_Letter")
 
-unicode_letters <- unicode_js_array_generator_all[unicode_js_array_generator_all$gen_cat %in% letters_filter,]
+punct_filter <- c('Other_Punctuation','Close_Punctuation','Open_Punctuation','Dash_Punctuation',
+                    'Connector_Punctuation','Initial_Punctuation','Final_Punctuation','Paragraph_Separator',
+                    "Line_Separator")
+
+numbers_filter <- c('Other_Number','Decimal_Number','Letter_Number')
+
+letters_filter <- append( letters_filter, punct_filter )
+letters_filter <- append( letters_filter, numbers_filter)
+
+final_filter <- unique(unicode_js_array_generator_all$gen_cat)
+
+unicode_letters <- unicode_js_array_generator_all[ unicode_js_array_generator_all$gen_cat %in% final_filter,]
 str(unicode_letters)
 unique(unicode_letters$gen_cat)
+unique(unicode_letters$block)
 
 
 source('./exclude_glyph.R')
 
 # Eliminate Blocks ----
-
+#exclude_blocks=c()
 unicode_letter_block_reduce <- unicode_letters[!unicode_letters$block %in% exclude_blocks,]
 str(unicode_letter_block_reduce)
 sort(unique(unicode_letter_block_reduce$block))
 
 # Eliminate Glyphs ----
-
+#exclude_glyph <- c()
 unicode_letters_glyhp_reduce <- unicode_letter_block_reduce[!unicode_letter_block_reduce$hex %in% exclude_glyph,]
 str(unicode_letters_glyhp_reduce)
 unique(unicode_letters_glyhp_reduce$gen_cat)
@@ -104,6 +116,9 @@ build_block_hex_desc(unicode_js_array_genner_desc)
 
 
 
+
+
+
 ###  Build block_hex_desc-----
 build_block_hex_desc <- function(unicode_js_array_generator){
   fn <- 'block_hex_desc.js'
@@ -145,22 +160,4 @@ build_block_lang_skeleton <- function(unicode_js_array_generator){
 
 
 
-lang_font <-c('symbols',
-  'arabic','carion',
-  'korean','japanese','thai','lao','taiviet','taitham','newtailue','taile',
-  'myanmar','khmer',
-  'chinese-simplified','chinese-traditional','chinese-hongkong',
-  'cyrillic','cyrillic-ext',
-  'sinhala','georgian',
-  'devangari','tamil','gurmukhi','gujarati','bengali','telugu','malayalam',
-  #singletons
-  'cuneiform','egyptianheiroglyphics','sinhala',
-  'tagalog', 'inscriptionalpahlavi', 'ethiopic', 'inscriptionalpahlavi', 'javanese', 'batak',
-  'phoenician', 'kayahli', 'rejang', 'lepcha', 'thaana', 'oriya', 'gothic', 'sudanese', 'samaritan',
-  'brahmi', 'olchiki', 'shavian', 'tagbanwa', 'oldturkic', 'tifinagh', 'deseret', 'olditalic', 'avestan','bamum', 'ilycian', 'sylotinagri', 'phagspa', 'canadinaboriginal', 'mongolian', 'kaithi', 'tibetan',
-  'saurashtra', 'lisu', 'syriaceastern', 'buhid', 'buginese', 'coptic', 'syriacwestern', 'lydian',
-  'syriacestrangela', 'ogham', 'mandaic', 'oldpersian', 'oldsoutharabian', 'hanunoo', 'kharoshthi', 'ugaritic',
-  'imperialaramaic', 'inscriptionalparthian', 'meeteimayek', 'balinese', 'cham', 'vai', 'osmanya', 'cherokee',
-  'armenian','cypriot')
 
-sort(lang_font)
