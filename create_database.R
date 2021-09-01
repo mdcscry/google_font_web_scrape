@@ -82,6 +82,7 @@ str(unicode_js_array_genner)
 str(unicode_js_array_genner_desc)
 
 ###  Build block_hex-----
+
 build_block_hex <-function(unicode_js_array_generator){
     fn <- 'block_hex.js'
     if (file.exists(fn)) 
