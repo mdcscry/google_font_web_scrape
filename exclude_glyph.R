@@ -2,236 +2,195 @@
 
 
 exclude_blocks <- c(
-  'Chess_Symbols'
-  ,'Georgian_Extended'
-  ,'Ideographic_Symbols_And_Punctuation'
-  ,'Kana_Extended_A','Kana_Supplement'
-  ,'Makasar'
-  ,'Medefaidrin'
-  ,'Mongolian_Supplement'
-  ,'Nandinagari'
-  ,'Nushu'
-  ,'Nyiakeng_Puachue_Hmong'
-  ,'Ottoman_Siyaq_Numbers'
-  ,'Small_Kana_Extension'
-  ,'Sutton_SignWriting'
-  ,'Symbols_And_Pictographs_Extended_A'
-  ,'Syriac_Supplement'
-  ,'Tamil_Supplement'
+  'Alphabetic Presentation Forms'
+  ,'Ideographic Symbols And Punctuation'
+  ,'Kana Extended-A'
+  ,'Kana Extended-B'  
+  ,'Kana Supplement'
+  ,'Small Kana Extension'
+  ,'Syriac Supplement'
   
   #for display
-  ,'Combining_Diacritical_Marks_Extended'
-  ,'Combining_Diacritical_Marks_For_Symbols'
-  ,'Control_Pictures'
-  ,'Enclosed_Alphanumeric_Supplement'
-  ,'Enclosed_Alphanumerics'
-  ,'Enclosed_CJK_Letters_And_Months'
-  ,'Ideographic_Description_Characters'
-  ,'Block_Elements'
-  ,'Supplemental_Symbols_And_Pictographs'
-  
-  
+  ,'Combining Diacritical Marks Extended'
+  ,'Combining Diacritical Marks For Symbols'
+  ,'Control Pictures'
+  ,'Enclosed Alphanumeric Supplement'
+  ,'Enclosed Alphanumerics'
+  ,'Enclosed CJK Letters And Months'
+  ,'Ideographic Description Characters'
+  ,'Ideographic Symbols and Punctuation'  
+  ,'Enclosed Ideographic Supplement'
+  ,'CJK Compatibility'  
+  ,'CJK Compatibility Forms'
+  ,'CJK Unified Ideographs'
+  ,'CJK Compatibility Ideographs Supplement'
+  ,'CJK Compatibility Ideographs'
+  ,'CJK Unified Ideographs Extension A'
+  ,'CJK Unified Ideographs Extension B'
+  ,'CJK Unified Ideographs Extension C'
+  ,'CJK Unified Ideographs Extension D'
+  ,'CJK Unified Ideographs Extension E'
+  ,'CJK Unified Ideographs Extension F'
+  ,'CJK Unified Ideographs Extension G'
+  ,'Halfwidth and Fullwidth Forms' 
+  ,'Small Form Variants'
+  ,'Small Kana Extension'
+  ,'Kana Extended-B' 
+  ,'Cyrillic Extended-D'
+  ,'Garay'
+  ,'Tulu-Tigalari'
+  ,'Myanmar Extended-C'
+  ,'Egyptian Hieroglyphs Extended-A'
+  ,'Egyptian Hieroglyph Format Controls'
+  ,'Gurung Khema' # look at this one
+  ,'Kirat Rai'
+  ,'Ol Onal' #look at this one
+  ,'Sidetic'
+  ,'Sharada Supplement'
+  ,'Tolong Siki'
+  ,'Beria Erfe'
+  ,'Tangut Components Supplement'
+  ,'Miscellaneous Symbols Supplement'
+  ,'Tai Yo'
+  ,'Symbols for Legacy Computing Supplement'
+  ,'Specials'
+  ,'Arabic Extended-C'
+  ,'Hangul Jamo Extended-A'
+  ,'Hangul Jamo Extended-B'  
+  ,'Hangul Syllables'  
 );
 
 
 exclude_glyph <- c(
-#aegean
-'1012D'
+  
+#alchemical symbols  
+'1F778','1F779','1F77A'
 
-#adlam
-,'1E94B'
+#anatolian heiroglyphics
+,'14524'
+  
+#arabic extended-A & B ( C block is removed )
+,'08BA','08BF','08C0','08C1','08C2','08C3','08C4','08C5','08C6','08C7','08C9','088F'
 
-#armenian
-,'0560','0588','0569'
+#arabic presentation forms A
+,'FBC3','FBC4','FBC5','FBC6','FBC7','FBC8','FBC9','FBCA','FBCB','FBCC','FBCD','FBCE','FBCF','FBD0','FBD1','FBD2','FD90','FD91','FDC8','FDC9','FDCA','FDCB','FDCC','FDCD','FDCE'
 
-#arrow
-,'21D9'
+#balinese
+,'1B4C','1B4E','1B4F','1B7D','1B7E','1B7F'
+
+#basic latin
+,'0020'
 
 #bengali
-,'09FD','09FC'
+,'09FC' #is rendered by noto sans and serif as well as others.
 
-#chakma
-,'11144','11126'
+#bopmofo extended
+,'31BC','31BD','31BE','31BF'
 
-#cherokee
-,'13EE'
+#chess symbols
+,'1FA54','1FA55','1FA56','1FA57'
 
-#box drawing
-,'251B','2599'
+#CJK Strokes
+,'31D0','31D1','31D2','31D3','31D4','31D5','31D6','31D7','31D8','31D9','31DA','31DB','31DC','31DD','31DE','31DF','31E0','31E1','31E2','31E3','31E4','31E5','31EF'
 
-#cjk compatibility
+#Currency Symbols
+,'20C1'
 
-,'332C','FA41','F921','F94C'
-,'FA6C'
-,'FA70','FA73','FA77','FA76'
-, 'FA82','FA84','FA85','FA86','FA87', 'FA89','FA8C'
-, 'FA90', 'FA91', 'FA92','FA93','FA94','FA95','FA96','FA97','FA9C','FA9D','FA9E','FA9F'
-, 'FAA1','FAA4', 'FAAC'
-, 'FAB0','FAB2','FAB5','FAB6','FAB7', 'FABD','FABE'
-, 'FAC0','FAC1','FAC2','FAC3','FAC5', 'FAC7','FAC9','FACB','FACD'
-, 'FAD2', 'FAD3','FAD4','FAD5','FAD8'
-, 'F9A3','F9C6', 'F931','F91D','F9D7'
-,'FAAD','FACA','FABA','F96B','FABB','FA9B','FAC8','FA7A','FAA8','FA8C','FA9C'
-,'F941','F933','FAB1','F910','FA83','FA71','F905','FAA2','FA65','FA7D','FAAB','FA99'
-,'F992','FAD8','FA7E','FABC','F9F6','FAD5','FA40','FA10','FAA3','FA07','F90D','FAD0'
-,'FA88','FA78','FAD6','FA39','FAD1','FAB3','FA29','FAAF','FA8B','FAA6','FAD9'
-,'FAB0','FACE','FA64','FACF','FA7C','FA51','F984','FAAA','FA72','FAB4','FA4E'
-,'FA74','FAC4','F963','F9B4','FAA5','FAB9','FA80','FA8D','FAC1','FA8E','FA79'
-,'FA47','FA81','F93A','F9DF','FA35','F93F','FA98','FAD7','F96E','FABF','FAC6'
-,'FAB8','FA9A','F960','F96D','FA62','FAA7','FA13','FAA9','FA16','F9B3','FAA0'
-,'FAAE','FA1C','F945','F989','FA7F','F97B','FA75','F999','FA7B','F94B','FA8A'
+#Cyrillic Extended-C
+,'1C89','1C8A'
+
+#Dives Akuru
+,'11901','11903','11905','1190D','1190F','11911','11912','11913','11915','1192A','11941','11950','11951','11952','11953','11954','11955','11956','11957','11958','11959'
 
 #Enclosed_Ideographic_Supplement
 ,'1F263','1F262','1F264','1F260','1F265','1F243','1F261','1F226','1F22E','1F22C','1F223','1F210'
 
-#soyombo
-,'11A84','11A85','11A86','11A87','11A88','11A89'
+#Enclosed CJK Letters and Months
+,'32CC','32CD','32CE','32CF'
 
-#Unified Ideograph
-,'6950'
+#General Punctuation
+,'2000','2001','2002','2003','2004','2005','2006','2007','2008','2009','200A','2028','2029','202F','205F'
 
-#carian
-,'10268'
-#CJK Radical
-,'2E85','2EC8','31CA','303C'
+#Geometric Shapes Extended
+,'1F7E0','1F7E1','1F7E2','1F7E3','1F7E4','1F7E5','1F7E6','1F7E7','1F7E8','1F7E9','1F7EA','1F7EB','1F7F0'
 
-#devanagari
-,'A8FA','A8F8','A8FE'
-
-#arabic
-,'0691','FC7B'
-
-#Alchemical
-,'1F74C'
-
-
-#gujarati
-,'0AF9'
+#Glagolitic
+,'2C5F'
 
 #gurmukhi
-,'0A2E','0A2D','0A09','0A76'
-
-#halfwidth
-,'FF17','FF11','FF3F','FF1B'
+,'0A76'
 
 #hebrew
 ,'05EF'
 
-#hangul
+#hangul jamo
+,'115A','115B','115C','115D','115E','115F','1160','11A3','11A4','11A5','11A6','11A7','11FA','11FB','11FC','11FD','11FE','11FF'
 
+#Kana Extended-A
+,'1B11F'
 
+#Katakana Phonetic Extensions
+,'31FF'
 
-#kannada
-,'0C84','0C80'
+#Khitan Small Script
+,'18CFF'
 
-#Lao
-,'0E86','0E89','0E98','0E91','0E92','0E93','0E90','0EAC','0EA0','0EA8','0E8E'
-,'0EA9','0E8F','0E8C'
+#Latin Extended-D
+,'A7CB','A7CC','A7CD','A7CE','A7CF','A7D2','A7D4','A7DA','A7DB','A7DC','A7F1'
 
-#extended latin d
-,'A7C4','A7C6','A7A8','A7BD','A7B8','A7B9','A7BC','A7BA' ,'A7C3','A7BF','A7BE'
-,'A7AF','A7C2','A7C5','A7BB'
+#Latin Extended-G
+,'1DF25','1DF26','1DF27','1DF28','1DF29','1DF2A'
 
-#extended_latin_e
-,'AB66','AB67'
-
-#limbu
-,'191C','191D','191E'
-
-#karoshthi
-,'10A34','10A35','10A48'
+#Latin-1 Supplement
+,'00A0'
 
 #Malayalam
-,'OD78','0D5B','0D5C','0D4F','0D76','0D5D','0D54','0D5E','0D78','0D5F','0D5A','0D58','0D77'
-,'0D4E' #special combining form
-,'0D56','0D55','0D59'
+,'0D4E'
 
-#Miscellaneous_Symbols
-,'2610'
+#Miscellaneous_Symbols (These all render in Symbola but are emojis)
+,'2614','261D','267F','26A1','26AA','26AB','26BD','26BE','26C4','26C5','26D4'
 
-#Miscellaneous_Symbols_And_Arrows
-,'2BC9','2B45','2B0E','2BE2','2BD4','2BD5','2BD6','2BFA','2B3E','2BFD','2BD2','2B4C'
-,'2BDD','2BF9','2B44','2BD8','2B42','2BDA','2BE6','2B40','2BFF','2BE6','2BF6','2BE5'
-,'2BF0','2BEA','2BF8','2BE0','2BDB','2B47','2B31','2BE1','2BF7','2B49','2BF4','2BBC'
-,'2BF1','2BDE','2B35','2B3D','2B3C','2BFB','2B46','2BF5','2BE3','2B39','2BDF','2BDC'
-,'2BF3','2BE4','2BD9','2BBA','2BBB','2BEB','2BD3','2BD7','2BE9','2BF2','2B4A','2BE8'
-,'2BFC','2BE7'
+#Miscellaneous_Technical (These all render in Symbola but are emojis)
+,'231A','231B','23E9','23EA','23EB','23EC','23F0','23F3'
 
-#Miscellaneous_Symbols_And_Pictographs
-,'1F56D','1F599','1F5EC'
+#Newa
+,'11460','11461'
 
-#Miscellaneous_Technical
-,'23B8','23BB','23BC','23C5','2333','23B9','23BF','232D'
-,'23BA','23B7','23FF','23BD','2392'
-
-#Miscellaneous_Mathematical_Symbols_B
-,'29A3'
-
-#Mongolian
-,'1878','1166A','1166B','11660','11661','11662','11663','11664','11665','11167','11669','11668','1166C'
-
-#nko
-,'07FE','07FF'
-
-#Old_Italic
-,'1032D','1032E','1032F'
-
-#Old_Turkic
-,'10C3F'
-
-#Old Permic
-,'10357'
+#Runic
+,'16F1','16F2','16F3','16F4','16F5','16F6','16F7','16F8'
 
 #sharada
-,'111C2','111C3'
+,'111C3','111C2'
 
-#suppliemental_mathematical_operators
-,'2AFE'
+#soyombo
+,'11A84','11A85','11A86','11A87','11A88','11A89'
 
-#supplemental punctualtion
-,'2E45','2E46','2E47','2E48','2E4F','2E43','2E4C','2E4D','2E4E','2E49','2E4A','2E4B'
+#Supplemental Arrows-C
+,'1F8AC','1F8AD','1F8B2','1F8B3','1F8B4','1F8B5','1F8B6','1F8B7','1F8B8','1F8B9','1F8BA','1F8BB','1F8C0','1F8C1','1F8D0','1F8D1','1F8D2','1F8D3','1F8D4','1F8D5','1F8D6','1F8D7','1F8D8'
 
-#Supplemental_Symbols_And_Pictographs no glyhph
-,'1F9C4','1F904','1F978','1F906','1F9BB','1F9A7','1F905','1F9BD'
-,'1F90F','1F901','1F90A','1F900','1F9CE','1F9C9','1F9C6','1F907'
-,'1F9CA','1F9AE','1F9C8','1F909','1F90B','1F903','1F9C5','1F9AA'
-,'1F9BE','1F90E','1F902','1F9CF','1F93F','1F97B','1F9A5','1F90D'
-,'1F9C3','1F971','1F9AF','1F9A8','1F9A6','1F9C7','1F9A9','1F908'
-,'1F9BC','1F9BA','1F9CD','1F9BF'
+#Supplemental_Symbols_And_Pictographs no glyph
 ,'1F3FB','1F3FC','1F3FD','1F3FE','1F3FF' #skin
 ,'1F9B0','1F9B1','1F9B2','1F9B3','1F9B3' #hair
 
-#Supplemental_Symbols_And_Pictographs without a non emoji backup
-,'1F933','1F97E','1F9EF','1F932','1F9C2','1F6F7','1F3C5','1F9D6','1F98A','1F975','1F9D9','1F91B','1F9DF'
-,'1F91D','1F9D1','1F987','1F925','1F641','1F98C','1F96D','1F91F'
+#Symbols for Legacy Computing
+,'1FBCB','1FBCC','1FBCD','1FBCE','1FBCF','1FBD0','1FBD1','1FBD2','1FBD3','1FBD4','1FBD5','1FBD6','1FBD7','1FBD8','1FBD9','1FBDA','1FBDB','1FBDC','1FBDD','1FBDE','1FBDF'
+,'1FBE0','1FBE1','1FBE2','1FBE3','1FBE4','1FBE5','1FBE6','1FBE7','1FBE8','1FBE9','1FBEA','1FBEB','1FBEC','1FBED','1FBEE','1FBEF'
 
-#Miscellaneous_Symbols_And_Pictographs without text backup
-,'1F37E','1F54D','1F3F8','1F54B','1F4FF','1F3FA','1F3D2','1F54C','1F4F8','1F42A','1F54E','1F3D1','1F3D2'
-,'1F595','1F57A','1F3CF','1F596','1F37F','1F32F','1F3F9','1F32E','1F3D3'
 
-#Emoticons (without text emoji backup)
-,'1F642','1F643','1F641','1F644'
+#Tangut
+,'187F8','187F9','187FA','187FB','187FC','187FD','187FE','187FF'
 
-#Transport_And_Map_Symbols with no text emoji backup
-,'1F6F6','1F6F7','1F6F5','1F6D2','1F6EB','1F6D0','1F6D1','1F6CC','1F6F8','1F6F4','1F6EB','1F6F9','1F6EC'
-
+#Tangut Supplement
+,'18D09','18D0A','18D0B','18D0C','18D0D','18D0E','18D0F','18D10','18D11','18D12','18D13','18D14','18D15','18D16','18D17','18D18','18D19','18D1A','18D1B','18D1C','18D1D','18D1E'
 
 #Telegu
-,'0C5A','0C69','0C34','0C77'
+,'0C5C'
 
-#Transport_And_Map_Symbols
-,'1F6D3','1F6D4','1F6D5','1F6FA'
+#Tibetan
+,'0FD9','0FDA'
 
 #Vedic_Extensions
-,'1CFA'
-
-#GeometricShapes
-,'1F7E7','1F7E1','1F7E2','1F7EA','1F7D6','1F7D7','1F7D8','1F7E4','1F7E5','1F7E6','1F6D1','1F7DF'
-,'1F7D5','1F7E8','1F78E','1F7E9','1F7E4','1F7E3','1F7E0','1F7EB'
-
-#Counting_Rod_Numerals
-,'1D377','1D375','1D373','1D378','1D376','1D372','1D374'
-
+ ,'1CFA'
 
 )
 
