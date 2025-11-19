@@ -7,12 +7,20 @@ master_file <- paste0("UnicodeMaster_", unicode_version, ".txt")
 unicode_db <- read_delim(master_file, delim = ";", col_types = cols(.default = "c"))
 
 unique(unicode_db$category)
+
 sort(unique(unicode_db$block))
 
 # Load your manual exclusion file
 source('./exclude_glyph.R')
 
-# Filter out unwanted categories
+
+# Filter out unwanted categories FULL BLOCK_HEX_No_Puncrt
+#exlude_categories <- c(
+#"Cc","Zs","Po","Sc","Ps","Pe","Sm","Pd","Sk" "Pc","So",
+#"Pi","Cf","No","Pf","Lm","Mn","Me","Mc","Zl","Zp","Cs","Co"
+#)
+
+# Filter out unwanted categories FULL BLOCK_HEX
 exclude_categories <- c("Cn", "Cf", "Mn", "Mc", "Me",
                         "Cc", "Cs", "Co")
 
@@ -92,3 +100,4 @@ cat("\nGenerated files:\n")
 cat("- css_js/block_hex_17.js\n")
 cat("- css_js/block_hex_desc_17.js\n")
 cat("Total blocks:", nrow(unicode_js_array_genner), "\n")
+cat("Total glyphs:", nrow(unicode_filtered), "\n")

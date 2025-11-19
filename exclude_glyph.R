@@ -7,6 +7,9 @@ exclude_blocks <- c(
   ,'Kana Extended-A'
   ,'Kana Extended-B'  
   ,'Kana Supplement'
+  ,'Hangul Extended-A'
+  ,'Hangul Extended-B'
+  ,'Hangul Syllables'
   ,'Small Kana Extension'
   ,'Syriac Supplement'
   
@@ -52,7 +55,7 @@ exclude_blocks <- c(
   ,'Tangut Components Supplement'
   ,'Miscellaneous Symbols Supplement'
   ,'Tai Yo'
-  ,'Symbols for Legacy Computing Supplement'
+#  ,'Symbols for Legacy Computing Supplement'
   ,'Specials'
   ,'Arabic Extended-C'
   ,'Hangul Jamo Extended-A'
@@ -64,7 +67,7 @@ exclude_blocks <- c(
 exclude_glyph <- c(
   
 #alchemical symbols  
-'1F778','1F779','1F77A'
+'1F778','1F779','1F77A','1F777'
 
 #anatolian heiroglyphics
 ,'14524'
@@ -93,8 +96,11 @@ exclude_glyph <- c(
 #CJK Strokes
 ,'31D0','31D1','31D2','31D3','31D4','31D5','31D6','31D7','31D8','31D9','31DA','31DB','31DC','31DD','31DE','31DF','31E0','31E1','31E2','31E3','31E4','31E5','31EF'
 
+#CJK Symbols and Punctuation
+,'303F','303C'
 #Currency Symbols
-,'20C1'
+,'20C1','20C0'
+
 
 #Cyrillic Extended-C
 ,'1C89','1C8A'
@@ -132,8 +138,15 @@ exclude_glyph <- c(
 #Katakana Phonetic Extensions
 ,'31FF'
 
+#Khmer
+,'17F0','17F1','17F2','17F3','17F4','17F5','17F6','17F7','17F8','17F9'
+
 #Khitan Small Script
 ,'18CFF'
+
+#Latin Add'l
+,'1EFA','1EFB','1EFC','1EFD','1EFE','1EFF'
+
 
 #Latin Extended-D
 ,'A7CB','A7CC','A7CD','A7CE','A7CF','A7D2','A7D4','A7DA','A7DB','A7DC','A7F1'
@@ -144,14 +157,23 @@ exclude_glyph <- c(
 #Latin-1 Supplement
 ,'00A0'
 
+#Symbols for Legacy Computing
+,'1FBFA'
+
+#Symbols for Legacy Computing Supplement
+,'1CCFA', '1CCFB', '1CCFC', '1CEBA', '1CEBB', '1CEBC', '1CEBD','1CEBE', '1CEBF'
+
 #Malayalam
 ,'0D4E'
 
 #Miscellaneous_Symbols (These all render in Symbola but are emojis)
-,'2614','261D','267F','26A1','26AA','26AB','26BD','26BE','26C4','26C5','26D4'
+#,'2614','261D','267F','26A1','26AA','26AB','26BD','26BE','26C4','26C5','26D4'
 
 #Miscellaneous_Technical (These all render in Symbola but are emojis)
-,'231A','231B','23E9','23EA','23EB','23EC','23F0','23F3'
+#,'231A','231B','23E9','23EA','23EB','23EC','23F0','23F3','2337'
+
+#Nag Mundari
+,'1E4F0'
 
 #Newa
 ,'11460','11461'
@@ -192,5 +214,7 @@ exclude_glyph <- c(
 #Vedic_Extensions
  ,'1CFA'
 
+#Zanabazar
+,'11A20'
 )
 
