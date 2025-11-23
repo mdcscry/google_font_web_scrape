@@ -38,7 +38,6 @@ exclude_blocks <- c(
   ,'Halfwidth and Fullwidth Forms' 
   ,'Small Form Variants'
   ,'Small Kana Extension'
-  ,'Kana Extended-B' 
   ,'Cyrillic Extended-D'
   ,'Garay'
   ,'Tulu-Tigalari'
@@ -173,7 +172,7 @@ exclude_glyph <- c(
 #,'231A','231B','23E9','23EA','23EB','23EC','23F0','23F3','2337'
 
 #Nag Mundari
-,'1E4F0'
+, '1E4F0'
 
 #Newa
 ,'11460','11461'

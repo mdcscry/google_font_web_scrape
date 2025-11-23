@@ -3,6 +3,7 @@ library(dplyr)
 
 # Load the master database
 unicode_version <- "17.0.0"
+unicode_file_namer <- '17'
 master_file <- paste0("UnicodeMaster_", unicode_version, ".txt")
 unicode_db <- read_delim(master_file, delim = ";", col_types = cols(.default = "c"))
 
@@ -14,15 +15,24 @@ sort(unique(unicode_db$block))
 source('./exclude_glyph.R')
 
 
-# Filter out unwanted categories FULL BLOCK_HEX_No_Puncrt
-#exlude_categories <- c(
-#"Cc","Zs","Po","Sc","Ps","Pe","Sm","Pd","Sk" "Pc","So",
-#"Pi","Cf","No","Pf","Lm","Mn","Me","Mc","Zl","Zp","Cs","Co"
-#)
+# Filter out unwanted categories FULL BLOCK_HEX_No_Punct
+  exclude_categories <- c("Cc","Zs","Po","Ps","Pe","Sm","Pd","Sk","Pc",
+  "Pi","Cf","No","Pf","Lm","Mn","Me","Mc","Zl","Zp","Cs","Co"
+  )
+file_insert <- '_no_punct'
 
-# Filter out unwanted categories FULL BLOCK_HEX
-exclude_categories <- c("Cn", "Cf", "Mn", "Mc", "Me",
-                        "Cc", "Cs", "Co")
+
+
+#Filter out unwanted categories FULL BLOCK_HEX
+#  exclude_categories <- c("Cn", "Cf", "Mn", "Mc", "Me",
+#                          "Cc", "Cs", "Co")
+#  file_insert <- ''
+
+fn <- paste0('block_hex',file_insert,'_',unicode_file_namer,'.js')
+fn_desc <- paste0('block_hex_desc',file_insert,'_',unicode_file_namer,'.js')
+
+cat(fn)
+cat(fn_desc)
 
 # Filter the data
 unicode_filtered <- unicode_db %>%
@@ -44,8 +54,8 @@ unicode_js_array_genner_desc <- aggregate(name ~ block,
                                           FUN = function(x) paste(x, collapse = "','"))
 names(unicode_js_array_genner_desc)[2] <- "glyph_desc"
 
-build_block_hex <- function(unicode_js_array_generator) {
-  fn <- 'block_hex_17.js'
+build_block_hex <- function(unicode_js_array_generator,fn) {
+  #fn <- paste0('block_hex',file_insert,'_',unicode_file_namer,'.js')
   if (file.exists(fn)) file.remove(fn)
   
   # Create blocks array
@@ -67,15 +77,15 @@ build_block_hex <- function(unicode_js_array_generator) {
   cat("\n}", file=fn, append=TRUE)
   
   # Add footer
-  cat("\n\nconsole.log('Block Hex_17.js is loaded');", file=fn, append=TRUE)
+  cat(paste0("\n\nconsole.log('",fn," is loaded');"), file=fn, append=TRUE)
   cat("\nvar blockHexWait = [];", file=fn, append=TRUE)
 }
 
-build_block_desc <- function(unicode_js_array_genner_desc) {
-  fn <- 'block_hex_desc_17.js'
-  if (file.exists(fn)) file.remove(fn)
+build_block_desc <- function(unicode_js_array_genner_desc,fn_desc) {
+  #fn <- paste0('block_hex_desc',file_insert,'_',unicode_file_namer,'.js')
+  if (file.exists(fn_desc)) file.remove(fn_desc)
   
-  cat("block_hex_desc = {", file=fn, sep="\n", append=TRUE)
+  cat("block_hex_desc = {", file=fn_desc, sep="\n", append=TRUE)
   
   array_to_output <- c()
   for(i in 1:nrow(unicode_js_array_genner_desc)) {
@@ -84,20 +94,20 @@ build_block_desc <- function(unicode_js_array_genner_desc) {
     array_to_output[i] <- paste0("'", block, "' : ['", list_of_desc, "']")
   }
   
-  cat(paste(array_to_output, collapse = ",\n"), file=fn, sep="\n", append=TRUE)
-  cat("\n}", file=fn, append=TRUE)
+  cat(paste(array_to_output, collapse = ",\n"), file=fn_desc, sep="\n", append=TRUE)
+  cat("\n}", file=fn_desc, append=TRUE)
   
   # Add footer
-  cat("\n\nconsole.log('Block Hex_Desc_17.js is loaded');", file=fn, append=TRUE)
-  cat("\nvar blockHexDescWait = [];", file=fn, append=TRUE)
+  cat(paste0("\n\nconsole.log('",fn_desc," is loaded');"), file=fn_desc, append=TRUE)
+  cat("\nvar blockHexDescWait = [];", file=fn_desc, append=TRUE)
 }
 
 # Generate the files
-build_block_hex(unicode_js_array_genner)
-build_block_desc(unicode_js_array_genner_desc)
+build_block_hex(unicode_js_array_genner,fn)
+build_block_desc(unicode_js_array_genner_desc,fn_desc)
 
 cat("\nGenerated files:\n")
-cat("- css_js/block_hex_17.js\n")
-cat("- css_js/block_hex_desc_17.js\n")
+cat(paste0("- css_js/",fn,"\n"))
+cat(paste0("- css_js/",fn_desc,"\n"))
 cat("Total blocks:", nrow(unicode_js_array_genner), "\n")
 cat("Total glyphs:", nrow(unicode_filtered), "\n")
